@@ -1,0 +1,24 @@
+# CODEOWNERS
+#
+# Rules:
+#   * The LAST matching pattern wins for a file.
+#   * More specific (deeper) paths MUST come after the catch-all `*` rule.
+#   * Every code owner must have at least **Write** access to this repo,
+#     otherwise GitHub will not recognize them as owners.
+#
+# TODO: Replace the placeholder usernames (github-user-A/B/C) with the real
+# GitHub usernames before pushing to GitHub.
+#
+# Roles:
+#   - nikeshkatuwal  : owns the frontend
+#   - Aayush3115  : owns the backend
+#   - MIS-TAKELY  : lead — reviews/owns everything, can merge any PR
+
+# Lead owns everything not covered below (root files, config, etc.)
+* @MIS-TAKELY
+
+# Frontend — managed by User A (lead C also reviews)
+/frontend/ @nikeshkatuwal @MIS-TAKELY
+
+# Backend — managed by User B (lead C also reviews)
+/backend/ @Aayush3115 @MIS-TAKELY

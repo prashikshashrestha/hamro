@@ -1,0 +1,146 @@
+================================================================================
+                       BOOK GENERATOR BACKEND API ENDPOINTS
+================================================================================
+Base Server URL : http://127.0.0.1:8000
+API Prefix      : http://127.0.0.1:8000/api/
+Format          : JSON (application/json)
+
+--------------------------------------------------------------------------------
+1. BOOKS ENDPOINTS
+--------------------------------------------------------------------------------
+- GET    /api/books/
+  List all books (returns paginated list using BookListSerializer).
+
+- POST   /api/books/
+  Create a new book.
+  Payload Example:
+  {
+    "title": "The Clockwork Realm",
+    "genre": "Fantasy",
+    "premise": "A clockmaker finds a portal inside an ancient watch.",
+    "book_type": "fiction",
+    "target_word_count": 50000
+  }
+
+- GET    /api/books/{id}/
+  Retrieve detailed information for a specific book (includes nested profiles,
+  chapters, characters, plot points, etc.).
+
+- PUT    /api/books/{id}/
+  Update all fields of a book.
+
+- PATCH  /api/books/{id}/
+  Partial update of a book.
+
+- DELETE /api/books/{id}/
+  Delete a book.
+
+- POST   /api/books/{id}/generate/
+  Trigger AI generation pipeline for the book.
+  Returns status 202 Accepted.
+
+- GET    /api/books/{id}/summary/
+  Retrieve full summary and high-level structure of the book.
+
+
+--------------------------------------------------------------------------------
+2. SERIES ENDPOINTS
+--------------------------------------------------------------------------------
+- GET    /api/series/            List all book series.
+- POST   /api/series/            Create a new book series.
+- GET    /api/series/{id}/       Retrieve details of a series.
+- PUT    /api/series/{id}/       Update a series.
+- PATCH  /api/series/{id}/       Partially update a series.
+- DELETE /api/series/{id}/       Delete a series.
+
+
+--------------------------------------------------------------------------------
+3. CHARACTERS ENDPOINTS
+--------------------------------------------------------------------------------
+- GET    /api/characters/               List all characters (supports query filters: ?book={book_id}&role={role}).
+- POST   /api/characters/               Create a new character.
+- GET    /api/characters/{id}/          Retrieve character details.
+- PUT    /api/characters/{id}/          Update character.
+- PATCH  /api/characters/{id}/          Partially update character.
+- DELETE /api/characters/{id}/          Delete character.
+
+
+--------------------------------------------------------------------------------
+4. CHAPTERS ENDPOINTS
+--------------------------------------------------------------------------------
+- GET    /api/chapters/                 List all chapters (supports query filters: ?book={book_id}&status={status}).
+- POST   /api/chapters/                 Create a chapter.
+- GET    /api/chapters/{id}/            Retrieve chapter details.
+- PUT    /api/chapters/{id}/            Update chapter.
+- PATCH  /api/chapters/{id}/            Partially update chapter.
+- DELETE /api/chapters/{id}/            Delete chapter.
+- POST   /api/chapters/{id}/revision/   Log a revision request / request AI polish for chapter.
+  Payload Example:
+  {
+    "reason": "Make tone more suspenseful",
+    "new_text": "Updated content..."
+  }
+
+
+--------------------------------------------------------------------------------
+5. LOCATIONS ENDPOINTS
+--------------------------------------------------------------------------------
+- GET    /api/locations/                List all world building locations.
+- POST   /api/locations/                Create a new location.
+- GET    /api/locations/{id}/           Retrieve location details.
+- PUT    /api/locations/{id}/           Update location.
+- PATCH  /api/locations/{id}/           Partially update location.
+- DELETE /api/locations/{id}/           Delete location.
+
+
+--------------------------------------------------------------------------------
+6. PLOT POINTS ENDPOINTS
+--------------------------------------------------------------------------------
+- GET    /api/plot-points/              List plot points (supports query filters: ?book={book_id}&resolved={bool}&importance={level}).
+- POST   /api/plot-points/              Create a plot point.
+- GET    /api/plot-points/{id}/         Retrieve plot point details.
+- PUT    /api/plot-points/{id}/         Update plot point.
+- PATCH  /api/plot-points/{id}/         Partially update plot point.
+- DELETE /api/plot-points/{id}/         Delete plot point.
+
+
+--------------------------------------------------------------------------------
+7. TIMELINE EVENTS ENDPOINTS
+--------------------------------------------------------------------------------
+- GET    /api/timeline-events/          List timeline events ordered by sequence (supports query filter: ?book={book_id}).
+- POST   /api/timeline-events/          Create timeline event.
+- GET    /api/timeline-events/{id}/     Retrieve event details.
+- PUT    /api/timeline-events/{id}/     Update timeline event.
+- PATCH  /api/timeline-events/{id}/     Partially update timeline event.
+- DELETE /api/timeline-events/{id}/     Delete timeline event.
+
+
+--------------------------------------------------------------------------------
+8. UPLOADED ASSETS ENDPOINTS
+--------------------------------------------------------------------------------
+- GET    /api/assets/                   List uploaded assets (supports query filters: ?book={book_id}&asset_type={type}).
+- POST   /api/assets/                   Upload asset metadata/file.
+- GET    /api/assets/{id}/              Retrieve asset details.
+- PUT    /api/assets/{id}/              Update asset.
+- PATCH  /api/assets/{id}/              Partially update asset.
+- DELETE /api/assets/{id}/              Delete asset.
+
+
+--------------------------------------------------------------------------------
+9. EXPORT HISTORY ENDPOINTS
+--------------------------------------------------------------------------------
+- GET    /api/exports/                  List export history (supports query filters: ?book={book_id}&format={pdf/epub/docx}&status={status}).
+- POST   /api/exports/                  Trigger/record new export request.
+- GET    /api/exports/{id}/             Retrieve export details.
+- PUT    /api/exports/{id}/             Update export status/record.
+- PATCH  /api/exports/{id}/             Partially update export record.
+- DELETE /api/exports/{id}/             Delete export record.
+
+
+--------------------------------------------------------------------------------
+10. TAGS ENDPOINTS
+--------------------------------------------------------------------------------
+- GET    /api/tags/                     List all predefined/custom tags (Read-Only).
+- GET    /api/tags/{id}/                Retrieve specific tag details.
+
+================================================================================
